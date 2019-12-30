@@ -2,7 +2,6 @@ var box = document.createElement("div");
 box.style.width = "100px";
 box.style.height = "100px";
 box.style.background = "RED";
-box.style.position = 'absolute';
 document.body.appendChild(box);
 
 
@@ -18,7 +17,7 @@ window.addEventListener('load', () => {
 
 
 //Moves box using arrow key
-window.addEventListener('keyup', (event) => {
+window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowLeft' :
             box.style.left = parseInt(box.style.left) - MoveBy + 'px'; //Move left
