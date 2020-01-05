@@ -1,20 +1,37 @@
-var Box = document.createElement("div");
-Box.style.margin = "auto";
-Box.style.width = "760px";
-Box.style.height = "570px";
-Box.style.position = "relative";
-// Box.style.outline = "5px solid black";
-document.body.appendChild(Box);
+var Box = document.getElementById('Box');
+var ball = document.getElementById('ball');
 
-var ball = document.createElement("div");
-// ball.style.margin = "200px";
-ball.style.left = "650px";
+
+Box.style.top = "120px";
+Box.style.margin = "auto";
+Box.style.width = "300px";
+Box.style.height = "300px";
+Box.style.position = "relative";
+Box.style.outline = "10px solid brown";
+
+
+ball.style.left = "120px";
 ball.style.width = "50px";
 ball.style.height = "50px";
 ball.style.borderRadius = "50%";
-ball.style.background = "GREEN";
-ball.style.position = "absolute";
-document.body.appendChild(ball);
-// document.body.Box.appendChild(ball);
+ball.style.background = "RED";
+ball.style.position = "relative";
 
-
+var toppos = 0;
+var inc = 0;
+function draw(top){
+    ball.style.top = top +'px';
+}
+setInterval(function()
+{
+    toppos += inc;
+    if(toppos > 245) //check if ball reach at floor
+    { 
+        inc -=5;
+    }
+    else if (toppos <=0){
+        inc +=5;
+    }
+    draw(toppos);
+}
+, 10);
