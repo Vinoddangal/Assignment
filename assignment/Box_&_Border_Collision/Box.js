@@ -1,26 +1,37 @@
-function Box(width, height, x, y, border, backgroundcolor, image){
+function Box(width, height, x, y, image){
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
-    this.border = border;
     this.position = 'absolute';
-    this.backgroundcolor = backgroundcolor;
-   // this.id = id;
     this.image = image;
+    this.box = null;
+    this.speed = 5;
+    this.direction =1;
+    var that = this;
 
-    var div = document.createElement('div');
+    var maindiv = document.createElement('div');
+    
     this.draw = function(){
-        div.style.width = this.width + 'px';
-        div.style.height = this.height + 'px';
-        div.style.border = this.border;
-        div.style.left = this.x + 'px';
-        div.style.top = this.y + 'px';
-        div.style.position = this.position;
-        div.style.backgroundcolor = this.backgroundcolor;
-        div.style.backgroundImage = "url("+this.image +")";
-        div.style.backgroundSize = '50px 50px';
-        document.body.appendChild(div);
-        //div.setAttribute('id',this.id);
+        maindiv.style.width = this.width + 'px';
+        maindiv.style.height = this.height + 'px';
+        maindiv.style.left = this.x + 'px';
+        maindiv.style.top = this.y + 'px';
+        maindiv.style.position = this.position;
+        maindiv.style.background = "url("+this.image +")";
+        maindiv.style.backgroundSize = '50px 50px';
+        this.box = maindiv;
+        document.body.appendChild(maindiv);
+    }
+    this.move = function(){
+        that.speed *=that.direction; //if(direction -1 5*-1 = -5 else 5*1=5)
+        that.x += that.speed;
+        this.draw();
+        this.checkCollsion();  
+    }
+    this.checkCollsion = function(){
+        if(that.x >= 550 || this.x<=0){
+           that.direction = -that.direction;
+        }
     }
 }
